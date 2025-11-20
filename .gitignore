@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.pt
+
+# Virtual environments
+venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and checkpoints
+logs/
+checkpoints/
+
+# Results
+results/*.png
+results/*.json
+
+# Data
+data/Mutated_CodeNet/graphs*
+data/Mutated_CodeNet/*.json
+data/Project_CodeNet/**/*
+
+# Model cache (e.g., HuggingFace)
+.cache/
+transformers_cache/
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
