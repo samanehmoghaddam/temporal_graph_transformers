@@ -41,4 +41,129 @@ This repository provides an end-to-end framework for generating synthetic vulner
 ---
 
 ## 📁 Project Structure
+~~~~
+temporal_graph_transformers/
+├── src/
+│   ├── data/
+│   │   └── codenet_mutator_cepg.py
+│   ├── models/
+│   │   ├── edge_transformer.py
+│   │   ├── temporal_gnn.py
+│   │   └── node_mlp.py
+│   ├── train/
+│   │   ├── train_gnn.py
+│   │   ├── train_mlp.py
+│   │   └── main_train.py
+│   ├── utils/
+│   │   ├── plot_utils.py
+│   │   └── logger.py
+│   ├── config.py
+│   └── __init__.py
+├── notebooks/
+│   ├── 01_mutation_analysis.ipynb
+│   └── 02_classification_results.ipynb
+├── data/
+├── logs/
+├── checkpoints/
+├── results/
+├── requirements.txt
+└── README.md
+~~~~
+
+---
+
+## ⚙️ Installation
+
+~~~~bash
+git clone https://github.com/<your-username>/temporal_graph_transformers.git
+cd temporal_graph_transformers
+pip install -r requirements.txt
+~~~~
+
+Optional (GPU-enabled):
+
+~~~~bash
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+~~~~
+
+---
+
+## 🚀 Usage
+
+### 1. Generate CEPG Graphs
+
+~~~~bash
+python src/data/codenet_mutator_cepg.py
+~~~~
+
+Outputs saved to: data/Mutated_CodeNet/graphs_multiple_no_timestamp/*.json
+
+
+---
+
+### 2. Train the Models (GNN + Baseline MLP)
+
+~~~~bash
+python src/train/main_train.py
+~~~~
+
+This will:
+- load CEPG graphs  
+- train the Temporal Graph Transformer  
+- train the baseline MLP  
+- save checkpoints in `checkpoints/`  
+- log to `logs/train.log`  
+- generate plots in `results/`  
+
+---
+
+## 📊 Results & Visualization
+
+Training histories:  
+- `results/gnn_history.json`  
+- `results/mlp_history.json`
+
+Learning curves:  
+- `results/gnn_learning_curves.png`  
+- `results/mlp_learning_curves.png`
+
+Summary metrics:  
+- `results/summary.json`
+
+---
+
+## 📓 Notebooks
+
+### 01_mutation_analysis.ipynb
+Includes:
+- benign vs. vulnerable distribution  
+- CWE frequency  
+- mutation statistics  
+- graph-level stats  
+
+### 02_classification_results.ipynb
+Includes:
+- GNN vs MLP comparisons  
+- per-epoch metrics  
+- confusion matrices  
+- checkpoint comparisons  
+
+---
+
+## 🧪 Dataset
+
+This project uses Java submissions from Project CodeNet, filtered by:
+
+- language = Java  
+- status = Accepted  
+
+Only synthetic mutation-based graphs are stored.  
+The original CodeNet dataset is **not redistributed**.
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**.  
+See `LICENSE` for details.
 
